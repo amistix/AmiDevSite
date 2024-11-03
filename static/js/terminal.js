@@ -1,83 +1,42 @@
-"use strict"
-
 var layer = 1;
 var offsetX, offsetY;
 var currentMovable;
-const loadingConsole = createTerminal("Status", 200, 100, createElement("div")
-  .attr("class","text")
-  .textContent("$Loading...")
-  .toDOM()
-);
 
-setMovable(loadingConsole.children[0]);
-
-function createTerminal(header_title = "Terminal", width=400, height=300, innerHTML=createElement("div").toDOM())
+function closeTerminal(closeButton)
 {
-  const terminalBody = createElement("div")
-    .attr("class","console hidden")
-    .css("width", `${width}px`)
-    .css("height", `${height}px`)
-    .css("top",`calc(${Math.random() * 50}% + 25vh)`)
-    .css("left",`calc(${Math.random() * 50}% + 25vw)`)
-    .toDOM();
+  const terminal = closeButton.parentElement.parentElement.parentElement;
+  terminal.classList.toggle("hidden");
+  setTimeout(
+    () => {document.body.removeChild(terminal)},
+    150
+  );
+}
 
-  const terminalHeader = createElement("div")
-    .attr("class","console-header hold-to-move")
-    .toDOM();
+function createTerminal(headerTitle = "Terminal", width=400, height=300, innerHTML)
+{
+  const template =  `
+    <div class="console hidden" style="width:${width}px;height:${height}px">
+      <div class="console-header hold-to-move">
+        <div class="console-title">${headerTitle}</div>
+        <div class="console-controls">
+          <div class="console-minimize console-control"></div>
+          <div class="console-maximize console-control"></div>
+          <div onclick="closeTerminal(this)" class="console-close console-control"></div>
+        </div>
+      </div>
+      <div class="text">${innerHTML}</div>
+    </div>
+  `
 
-  const terminalTitle = createElement("div")
-    .attr("class","console-title")
-    .textContent(`${header_title}`)
-    .toDOM();
+  let temp = document.createElement("div");
+  temp.innerHTML = template.trim();
+  document.body.appendChild(temp.firstChild);
+  let terminals = document.body.getElementsByClassName("console");
+  const terminal = terminals[terminals.length - 1];
+  setMovable(terminal.children[0]);
+  setTimeout(()=>{terminal.classList.toggle("hidden");}, 10);
 
-  const terminalControls = createElement("div")
-    .attr("class","console-controls")
-    .toDOM();
-  const terminalMinimaze = createElement("div")
-    .attr("class","console-minimize console-control")
-    .toDOM();
-  const terminalMaximize = createElement("div")
-    .attr("class","console-maximize console-control")
-    .toDOM();
-  const terminalClose = createElement("div")
-    .attr("class","console-close console-control")
-    .toDOM();
-
-  terminalControls.appendChild(terminalMinimaze);
-  terminalControls.appendChild(terminalMaximize);
-  terminalControls.appendChild(terminalClose);
-
-  terminalClose.addEventListener("click",()=>{
-    terminalBody.classList.toggle("hidden");
-    setTimeout(
-      () => {document.body.removeChild(terminalBody);},
-      150
-    );
-  });
-
-  terminalMinimaze.addEventListener("click",()=>{
-    terminalBody.classList.toggle("hidden");
-    terminalBody.style.display = "none";
-  });
-
-  terminalMaximize.addEventListener("click",()=>{
-    terminalBody.style.top = 0;
-    terminalBody.style.left = 0;
-    terminalBody.style.width = "calc(100% - 1.1em)";
-    terminalBody.style.height = "calc(100% - 1.1em)";
-
-  });
-  
-  terminalHeader.appendChild(terminalTitle);
-  terminalHeader.appendChild(terminalControls);
-  terminalBody.appendChild(terminalHeader);
-  terminalBody.appendChild(innerHTML);
-
-  setMovable(terminalHeader);
-  document.body.appendChild(terminalBody);
-
-  setTimeout(() => {terminalBody.classList.toggle("hidden");}, 10);
-  return terminalBody;
+  return terminal;
 }
 
 function setMovable(el)

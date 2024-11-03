@@ -1,4 +1,5 @@
 "use strict"
+
 document.addEventListener('keydown', keyDown, false)
 
 function keyDown(e){
@@ -6,6 +7,9 @@ function keyDown(e){
     createTerminal();
   }
 }
+
+// const terminal = new Terminal();
+// document.body.appendChild(terminal.createTerminal());
 
 function createElement(type) 
 {

@@ -1,6 +1,7 @@
 "use strict"
 
 const preloader = document.getElementById("preloader");
+const loadingConsole = createTerminal("Status", 200, 100, "Loading...");
 
 async function fetchRepos()
 {
