@@ -1,30 +1,30 @@
 var layer = 1;
 var offsetX, offsetY;
 var currentMovable;
+const sleep = ms => new Promise(r => setTimeout(r, ms));
 
-function closeTerminal(closeButton)
+function closeTerminal(terminal)
 {
-  const terminal = closeButton.parentElement.parentElement.parentElement;
   terminal.classList.toggle("hidden");
   setTimeout(
     () => {document.body.removeChild(terminal)},
-    150
+    200
   );
 }
 
-function createTerminal(headerTitle = "Terminal", width=400, height=300, innerHTML)
+async function createTerminal(headerTitle = "Terminal", width=400, height=300, innerHTML)
 {
   const template =  `
-    <div class="console hidden" style="width:${width}px;height:${height}px">
+    <div class="console hidden" style="width:${width}px; height:${height}px; top:calc(${Math.random()} * (100vh - ${height}px)); left: calc(${Math.random()} * (100vw - ${width}px));">
       <div class="console-header hold-to-move">
         <div class="console-title">${headerTitle}</div>
         <div class="console-controls">
           <div class="console-minimize console-control"></div>
           <div class="console-maximize console-control"></div>
-          <div onclick="closeTerminal(this)" class="console-close console-control"></div>
+          <div onclick="closeTerminal(this.parentElement.parentElement.parentElement)" class="console-close console-control"></div>
         </div>
       </div>
-      <div class="text">${innerHTML}</div>
+      <div class="text">$</div>
     </div>
   `
 
@@ -35,6 +35,14 @@ function createTerminal(headerTitle = "Terminal", width=400, height=300, innerHT
   const terminal = terminals[terminals.length - 1];
   setMovable(terminal.children[0]);
   setTimeout(()=>{terminal.classList.toggle("hidden");}, 10);
+
+  const text = innerHTML ? innerHTML : await fetchFunnyPhrase();
+  const terminalText = terminal.children[1];
+  for (let i = 0; i < text.length; i++)
+  {
+    await sleep(60);
+    terminalText.textContent += text[i];
+  }
 
   return terminal;
 }

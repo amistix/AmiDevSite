@@ -6,10 +6,22 @@ function keyDown(e){
   if((e.ctrlKey)&&(e.keyCode == 84)&&(e.altKey)){
     createTerminal();
   }
+  if((e.ctrlKey)&&(e.keyCode == 87)&&(e.altKey)){
+    const terminals = document.body.getElementsByClassName("console");
+    for (let i=0; i < terminals.length; i++)
+    {
+      closeTerminal(terminals[i]);
+    }
+  }
 }
 
-// const terminal = new Terminal();
-// document.body.appendChild(terminal.createTerminal());
+async function fetchFunnyPhrase()
+{
+  const req = await fetch("https://api.chucknorris.io/jokes/random?category=dev");
+  const result = await req.json();
+  return result.value;
+}
+
 
 function createElement(type) 
 {
