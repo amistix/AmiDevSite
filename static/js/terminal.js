@@ -24,7 +24,7 @@ async function createTerminal(headerTitle = "Terminal", width=400, height=300, i
           <div onclick="closeTerminal(this.parentElement.parentElement.parentElement)" class="console-close console-control"></div>
         </div>
       </div>
-      <div class="text">$</div>
+      <div class="text"></div>
     </div>
   `
 
@@ -40,7 +40,10 @@ async function createTerminal(headerTitle = "Terminal", width=400, height=300, i
   const terminalText = terminal.children[1];
   for (let i = 0; i < text.length; i++)
   {
-    await sleep(60);
+    if (text[i] != " ")
+    {
+      await sleep(30);
+    }
     terminalText.textContent += text[i];
   }
 

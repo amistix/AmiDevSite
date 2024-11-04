@@ -27,8 +27,10 @@ html {
 }
 
 .text {
-    display: inline-block;
-    /* white-space: nowrap; */
+    /* display: inline-block; */
+    white-space: pre-wrap;
+    line-height: 1em;
+    word-spacing: 4px;
     overflow: hidden;
     color: #0f0;
     font-size: 1em;
