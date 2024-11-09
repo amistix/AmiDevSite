@@ -23,5 +23,21 @@
            "             eeeee              eddek      \n",               
            "                ee070dgiiihfb88bep         \n",               
            "                     pliiihnu              "               
+  ],
+  "pages" : {
+    "API_GITHUB_AMISTIX" : "https://api.github.com/search/repositories?q=@amistix",
+    "CHUCK_NORRIS_JOKES" : "https://api.chucknorris.io/jokes/random?category=dev",
+    "SITE_CONFIG_JSON" : "api/json/site.config.json"
+  },
+  "wallpapers" : [
+    "https://images5.alphacoders.com/118/1186357.jpg",
+    "https://images.hdqwalls.com/wallpapers/kali-linux-dragon-4k-zz.jpg",
+    "https://wallpaperaccess.com/full/728904.jpg",
+    "https://i.redd.it/g8ud4yocwbeb1.png",
+    "https://wallpapers.com/images/featured/arch-linux-xw0szpochzcu0gml.jpg",
+    "https://i.pinimg.com/originals/b5/c7/b0/b5c7b06b0d04466879c5a972ed8178a9.jpg",
+    "https://preview.redd.it/9msmpl9wq9p91.png?width=3840&format=png&auto=webp&s=bd6c76be38b9718ad3d2087c32aaca6fbd4d82c3",
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8SdsR9K6qNNxkExuSRl5RWtaas2EIeFLl8A&s",
+    "https://images.pexels.com/photos/1270184/pexels-photo-1270184.jpeg?cs=srgb&dl=pexels-ahmedadly-1270184.jpg&fm=jpg"
   ]
 }

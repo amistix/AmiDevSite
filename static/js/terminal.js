@@ -12,13 +12,13 @@ class Terminal
   innerContent;
 
   template = `
-    <div class="console hidden" style="width:{width}px; height:{height}px; top:calc(${Math.random()} * (100vh - {height}px)); left: calc(${Math.random()} * (100vw - {width}px));">
-      <div class="console-header hold-to-move">
-        <div class="console-title">Terminal</div>
-        <div class="console-controls">
-          <div class="console-minimize console-control"></div>
-          <div class="console-maximize console-control"></div>
-          <div class="console-close console-control"></div>
+    <div class="terminal hidden" style="width:{width}px; height:{height}px; top:calc(${Math.random()} * (100vh - {height}px)); left: calc(${Math.random()} * (100vw - {width}px));">
+      <div class="terminal-header hold-to-move">
+        <div class="terminal-title">Terminal</div>
+        <div class="terminal-controls">
+          <div class="terminal-minimize terminal-control"></div>
+          <div class="terminal-maximize terminal-control"></div>
+          <div class="terminal-close terminal-control"></div>
         </div>
       </div>
       <div class="text"></div>
@@ -45,7 +45,7 @@ class Terminal
 
     this.element = temp.firstChild;
 
-    const closeButton = this.element.getElementsByClassName("console-close")[0];
+    const closeButton = this.element.getElementsByClassName("terminal-close")[0];
     closeButton.addEventListener("click", async () => {await this.closeTerminal()});
 
     document.body.appendChild(this.element);

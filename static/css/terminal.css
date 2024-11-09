@@ -1,0 +1,105 @@
+@keyframes blinkCursor {
+    50% {
+        content: "";
+    }
+}
+  
+@keyframes typeAndDelete {
+    0%,
+    10% {
+      width: 0;
+    }
+    90%,
+    100% {
+        width: 6.2em;
+    }
+}
+
+.text {
+    white-space: pre-wrap;
+    line-height: 1em;
+    word-spacing: 4px;
+    overflow: hidden;
+    color: #0f0;
+    font-size: 1em;
+    margin-left: 1em;
+    margin-top: 1.5em;
+}
+.text::after {
+    content: "|";
+    animation: blinkCursor 0.6s step-end infinite alternate;
+}
+
+.terminal {
+    transition: opacity ease-out 0.2s;
+    opacity: 1;
+    position: fixed;
+    border: 0.1em solid #333;
+    background-color: #1a1a1a;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    resize: both;
+    overflow:auto;
+}
+
+.terminal.hidden {
+    transition: all ease-in 0.15s;
+    opacity: 0;
+}
+
+.terminal-title {
+    color: #fff;
+    margin-left: 1em;
+    user-select: none;
+}
+
+.terminal-header {
+    cursor: grab;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1.5em;
+    background-color: #333;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+.terminal-controls {
+    position: absolute;
+    display: inline-flex;
+    height: 1.5em;
+    top:0;
+    right: 1em;
+    align-items: center;
+    cursor: default;
+}
+
+.terminal-control {
+    transition: all 0.1s;
+    width: 0.6em;
+    height: 0.6em;
+    margin-left: 0.8em;
+    border-radius: 50%;
+    background-color: #777;
+}
+
+.terminal-close {
+    background-color: #e33;
+}
+.terminal-control:hover {
+    transition: all 0.1s;
+    border-radius: 10%;
+    height: 1.5em;
+    width: 1.5em;
+    cursor:pointer;
+}
+  
+.terminal-minimize {
+    background-color: #ee0;
+}
+  
+.terminal-maximize {
+    background-color: #0b0;
+}
