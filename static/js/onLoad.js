@@ -26,9 +26,11 @@ const avatar = `
                                 pliiihnu                             
 
 Comming soon...`
-
-                                
-const neofetch = new Terminal(600,600, avatar);//createTerminal("Neofetch", 600, 600, avatar);
+const siteConfig = fetchSiteConfig();
+siteConfig.then(config => {
+  new Terminal(600,600,config.avatarIcon.join(""))
+})
+//const neofetch = new Terminal(600,600, avatar);//createTerminal("Neofetch", 600, 600, avatar);
 const loadingConsole = new Terminal(200, 100, "Loading...");//createTerminal("Status", 200, 100, "Loading...");
 const preloader = document.getElementById("preloader");
 
