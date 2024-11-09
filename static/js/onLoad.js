@@ -28,8 +28,8 @@ const avatar = `
 Comming soon...`
 
                                 
-const neofetch = createTerminal("Neofetch", 600, 600, avatar);
-const loadingConsole = createTerminal("Status", 200, 100, "Loading...");
+const neofetch = new Terminal(600,600, avatar);//createTerminal("Neofetch", 600, 600, avatar);
+const loadingConsole = new Terminal(200, 100, "Loading...");//createTerminal("Status", 200, 100, "Loading...");
 const preloader = document.getElementById("preloader");
 
 async function fetchRepos()
@@ -54,15 +54,11 @@ async function loadPage()
       .textContent(`${repo.name}`)
       .toDOM());
   });
-  setTimeout(
-    () => {
-      preloader.classList.add("done");
-      loadingConsole.then((el) => {
-        el.children[1].innerText = "$Successfuly!";
-        setTimeout(()=>{closeTerminal(el)}, 300);
-      });
-    }, 1000
-  )
+  preloader.classList.add("done");
+  await sleep(1000);
+  loadingConsole.element.children[1].innerText = "$Successfuly!";
+  await sleep(100);
+  await loadingConsole.closeTerminal();
 }
 
 loadPage();

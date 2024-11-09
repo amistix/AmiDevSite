@@ -4,14 +4,14 @@ document.addEventListener('keydown', keyDown, false)
 
 function keyDown(e){
   if((e.ctrlKey)&&(e.keyCode == 84)&&(e.altKey)){
-    createTerminal();
+    const terminal = new Terminal();
   }
   if((e.ctrlKey)&&(e.keyCode == 87)&&(e.altKey)){
-    const terminals = document.body.getElementsByClassName("console");
     for (let i=0; i < terminals.length; i++)
     {
-      closeTerminal(terminals[i]);
+      terminals[i].closeTerminal();
     }
+    terminals.length = 0;
   }
 }
 
