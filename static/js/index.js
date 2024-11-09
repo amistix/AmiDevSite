@@ -4,7 +4,7 @@ document.addEventListener('keydown', keyDown, false)
 
 function keyDown(e){
   if((e.ctrlKey)&&(e.keyCode == 84)&&(e.altKey)){
-    const terminal = new Terminal();
+    new Terminal();
   }
   if((e.ctrlKey)&&(e.keyCode == 87)&&(e.altKey)){
     for (let i=0; i < terminals.length; i++)
@@ -15,6 +15,12 @@ function keyDown(e){
   }
 }
 
+async function fetchSiteConfig() {
+  const req = await fetch("/api/json/site.config.json");
+  const result = await req.json();
+  return result.value;
+}
+
 async function fetchFunnyPhrase()
 {
   const req = await fetch("https://api.chucknorris.io/jokes/random?category=dev");
@@ -23,7 +29,7 @@ async function fetchFunnyPhrase()
 }
 
 
-function createElement(type) 
+function createElement(type)
 {
   const elem = document.createElement(type);
   return {
