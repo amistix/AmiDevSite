@@ -1,7 +1,7 @@
 "use strict"
 
 const siteConfig = fetchSiteConfig();
-var currentBgIndex = 0;
+var currentBgIndex = 1;
 
 document.addEventListener('keydown', keyDown, false)
 
@@ -22,7 +22,6 @@ function keyDown(e){
       document.body.setAttribute(
         "style", `background-image: url("${config.wallpapers[++currentBgIndex % config.wallpapers.length]}")`
       );
-      console.log(config.wallpapers[++currentBgIndex % config.wallpapers.length]);
     });
   }
 }
