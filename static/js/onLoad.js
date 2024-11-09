@@ -27,7 +27,7 @@ const avatar = `
 
 Comming soon...`
 const siteConfig = fetchSiteConfig();
-siteConfig.then(config => {
+siteConfig.then((config) => {
   new Terminal(600,600,config.avatarIcon.join(""))
 })
 //const neofetch = new Terminal(600,600, avatar);//createTerminal("Neofetch", 600, 600, avatar);
