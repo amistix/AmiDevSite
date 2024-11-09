@@ -18,7 +18,7 @@ function keyDown(e){
 async function fetchSiteConfig() {
   const req = await fetch("api/json/site.config.json");
   const result = await req.json();
-  return result.value;
+  return result;
 }
 
 async function fetchFunnyPhrase()
